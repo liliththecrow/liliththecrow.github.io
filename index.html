@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="style.css">
     <script>
       function openInIframe(url) {
-        var win = window.open('about:blank');
+        var win = window.open('', '_blank'); // Open a new blank window
         win.document.body.style.margin = "0";
         win.document.body.style.height = "100vh";
         
@@ -15,7 +15,7 @@
         iframe.style.margin = "0";
         iframe.referrerpolicy = "no-referrer";
         iframe.allow = "fullscreen";
-        iframe.src = url;
+        iframe.src = url; // Load the desired URL into the iframe
 
         win.document.body.appendChild(iframe);
       }
