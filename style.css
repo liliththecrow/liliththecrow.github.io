@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+  font-size: "25px";
+  color: #ffffff;
+  text-align: left;
+  background-color: #055499;
+  background-repeat: no-repeat;
+  background-size: cover;
+color: white;
+p {
+  color: white;
+}
+p { 
+  font-weight: bold} 
+  p {
+    font-size: 40px
+  }
+h1 {
+  font-weight: bold;
+}
+h1 {
+  color: white;
+}
+  h4 {
+    font-weight: bold;
+  }
+  h4 {
+    color: white;
+  }
