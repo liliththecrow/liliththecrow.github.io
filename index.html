@@ -7,7 +7,7 @@
         var win = window.open('', '_blank'); // Open a new blank window
         win.document.body.style.margin = "0";
         win.document.body.style.height = "100vh";
-        
+
         var iframe = win.document.createElement("iframe");
         iframe.style.border = "none";
         iframe.style.width = "100%";
@@ -19,22 +19,25 @@
 
         win.document.body.appendChild(iframe);
       }
+
+      function handleClick(url) {
+        openInIframe(url);
+      }
     </script>
   </head>
   <body>
     <p>homepage thing</p>
     
-    <a href="#" onclick="openInIframe('https://medrok9.github.io'); return false;"><h1>Main site</h1></a>
+    <span data-href="https://medrok9.github.io" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h1>Main site</h1></span>
     <p>​</p>
     
-    <a href="#" onclick="openInIframe('https://medrok9.github.io/webretro-testing/'); return false;"><h1>Web retro (emulator)</h1></a>
+    <span data-href="https://medrok9.github.io/webretro-testing/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h1>Web retro (emulator)</h1></span>
      
-    <a href="#" onclick="openInIframe('https://medrok9.github.io/demo/'); return false;"><h1>Ruffle (flash emulator)</h1></a>
+    <span data-href="https://medrok9.github.io/demo/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h1>Ruffle (flash emulator)</h1></span>
 
-    <a href="#" onclick="openInIframe('https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1'); return false;"><h4>Emulator files (wip)</h4></a>
+    <span data-href="https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h4>Emulator files (wip)</h4></span>
     <p>​</p>
     
-    <a href="#" onclick="openInIframe('https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link'); return false;"><h4>homepage feedback/suggestions</h4></a>
-
+    <span data-href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h4>homepage feedback/suggestions</h4></span>
   </body>
 </html>
