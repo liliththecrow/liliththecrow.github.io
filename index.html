@@ -2,20 +2,38 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
+    <script>
+      function openInIframe(url) {
+        var win = window.open('about:blank');
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+        
+        var iframe = win.document.createElement("iframe");
+        iframe.style.border = "none";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = "0";
+        iframe.referrerpolicy = "no-referrer";
+        iframe.allow = "fullscreen";
+        iframe.src = url;
+
+        win.document.body.appendChild(iframe);
+      }
+    </script>
   </head>
   <body>
     <p> homepage thing </p>
     
-    <a href="https://medrok9.github.io" target="_blank"><h1>Main site</h1></a>
-    <p>​</p>
+    <a href="#" onclick="openInIframe('https://medrok9.github.io'); return false;"><h1>Main site</h1></a>
+    <p>​​</p>
     
-    <a href="https://medrok9.github.io/webretro-testing/" target="_blank"><h1>Web retro (emulator)</h1></a> 
+    <a href="#" onclick="openInIframe('https://medrok9.github.io/webretro-testing/'); return false;"><h1>Web retro (emulator)</h1></a>
      
-    <a href="https://medrok9.github.io/demo/" target="_blank"><h1>Ruffle (flash emulator)</h1></a> 
+    <a href="#" onclick="openInIframe('https://medrok9.github.io/demo/'); return false;"><h1>Ruffle (flash emulator)</h1></a>
 
-    <a href="https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1" target="_blank"><h4>Emulator files (wip) </h4></a> 
-    <p>​</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" target="_blank"><h4>homepage feedback/suggestions </h4></a>
+    <a href="#" onclick="openInIframe('https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1'); return false;"><h4>Emulator files (wip) </h4></a> 
+    <p>​​</p>
+    <a href="#" onclick="openInIframe('https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link'); return false;"><h4>homepage feedback/suggestions </h4></a>
     
   </body>
 </html>
