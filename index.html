@@ -1,8 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+    <title>homepage</title>
+    <style>
+      /* Basic Styles for the Layout */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        background-color: #f9f9f9;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      /* Header Section */
+      header {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px dashed #333; /* Perforated line below the header */
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* Bouncing Text Animation */
+      .bouncing-title {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); /* Center vertically */
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007bff;
+        white-space: nowrap;
+        animation: bounce 6s ease-in-out infinite; /* Speed of bounce */
+      }
+
+      /* Keyframes for Bouncing Title (Left to Right) */
+      @keyframes bounce {
+        0% {
+          left: -80%; /* Start off the screen to the left */
+        }
+        50% {
+          left: 80%; /* Move to the far right */
+        }
+        100% {
+          left: -80%; /* Return to the far left */
+        }
+      }
+
+      /* Layout container (Sidebar + Main Content) */
+      .container {
+        display: flex;
+        height: calc(100vh - 60px); /* Subtract header height */
+        border-bottom: 2px dashed #333; /* Perforated line between header and body */
+      }
+
+      /* Sidebar Section */
+      .sidebar {
+        width: 250px;
+        padding: 20px;
+        box-sizing: border-box;
+        border-right: 2px dashed #333; /* Perforated line to separate sidebar from content */
+        background-color: transparent;
+      }
+
+      /* Main Content Section */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: transparent;
+      }
+
+      /* Sidebar Links */
+      .sidebar a {
+        display: block;
+        color: #333;
+        text-decoration: none;
+        margin: 10px 0;
+        font-weight: bold;
+      }
+
+      .sidebar a:hover {
+        color: #007bff;
+      }
+
+      /* Footer Section */
+      footer {
+        background-color: transparent;
+        color: #333;
+        text-align: center;
+        padding: 10px;
+        border-top: 2px dashed #333; /* Perforated line above the footer */
+      }
+
+      /* To ensure the sections maintain a transparent background */
+      .container, header, footer {
+        background-color: transparent;
+      }
+    </style>
     <script>
+      // Function to open links in iframe within a new window
       function openInIframe(url) {
         var win = window.open('', '_blank'); // Open a new blank window
         win.document.body.style.margin = "0";
@@ -20,23 +121,88 @@
         win.document.body.appendChild(iframe);
       }
 
+      // Handle the click event for each link and open it in an iframe
       function handleClick(url) {
         openInIframe(url);
       }
     </script>
   </head>
   <body>
-    <p>homepage thing</p>
-    
-    <span data-href="https://medrok9.github.io" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h1>Main site</h1></span>
-    <p>​</p>
-    
-    <span data-href="https://medrok9.github.io/webretro-testing/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h1>Web retro (emulator)</h1></span>
-     
-    <span data-href="https://medrok9.github.io/demo/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;"><h1>Ruffle (flash emulator)</h1></span>
 
-    <a href="https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1" target="_blank"><h4>Emulator files (wip) </h4></a> 
-    <p>​</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" target="_blank"><h4>homepage feedback/suggestions </h4></a>
+    <!-- Header Section -->
+    <header>
+      <div class="bouncing-title">homepage thing</div>
+    </header>
+
+    <!-- Layout Container (Sidebar + Main Content) -->
+    <div class="container">
+
+      <!-- Sidebar Section -->
+      <div class="sidebar">
+        <h3>link things</h3>
+        <!-- Links updated to use openInIframe functionality -->
+        <span data-href="https://medrok9.github.io" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+          <h4>Main site</h4>
+        </span>
+        <span data-href="https://medrok9.github.io/webretro-testing/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+          <h4>Web retro (emulator)</h4>
+        </span>
+        <span data-href="https://medrok9.github.io/demo/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+          <h4>Ruffle (flash emulator)</h4>
+        </span>
+        <a href="https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1" target="_blank">
+          <h4>Emulator files (wip)</h4>
+        </a>
+        <p>​</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" target="_blank">
+          <h4>homepage feedback/suggestions</h4>
+        </a>
+      </div>
+
+      <!-- Main Content Section -->
+      <div class="main-content">
+        <h2>Main Content Heading</h2>
+        <p>This is where your main content will go. You can replace this text with anything you like.</p>
+        <p>Add sections, paragraphs, images, tables, etc. Use this area for detailed content presentation.</p>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <div class="image-container">
+        <!-- First row of 6 images -->
+        <img src="ao3gif.gif" alt="Image 1"/>
+        <img src="aol.gif" alt="Image 2"/>
+        <img src="arachno.gif" alt="Image 3"/>
+        <img src="besteyes.gif" alt="Image 4"/>
+        <img src="bestviewedcomp.gif" alt="Image 5"/>
+        <img src="bob.gif" alt="Image 6"/>
+
+        <!-- Second row of 6 images -->
+        <img src="dbfire88.gif" alt="Image 7"/>
+        <img src="discord.gif" alt="Image 8"/>
+        <img src="kool-medrok.gif" alt="Image 9"/>
+        <img src="drpepper.gif" alt="Image 10"/>
+        <img src="firefoxnow.gif" alt="Image 11"/>
+        <img src="getwmp7.gif" alt="Image 12"/>
+
+        <!-- Third row of 6 images -->
+        <img src="github.gif" alt="Image 13"/>
+        <img src="gnu-linux.gif" alt="Image 14"/>
+        <img src="java_green_button.gif" alt="Image 15"/>
+        <img src="js-warning.gif" alt="Image 16"/>
+        <img src="ktlnow.gif" alt="Image 17"/>
+        <img src="minecraft.gif" alt="Image 18"/>
+
+        <!-- Fourth row of 3 images (centered) -->
+        <div class="last-row">
+          <img src="nedscape_now.gif" alt="Image 19"/>
+          <img src="neocities3.gif" alt="Image 20"/>
+          <img src="proweb_teal.gif" alt="Image 21"/>
+        </div>
+      </div>
+      <p>&copy;(redacted). All Rights Reserved.</p>
+    </footer>
+
   </body>
 </html>
