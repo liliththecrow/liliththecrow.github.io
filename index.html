@@ -41,31 +41,32 @@ h3 {
         overflow: hidden;
       }
 
+      
       /* Bouncing Text Animation */
       .bouncing-title {
         position: absolute;
-        top: 50%;
+        top: 6%;
+        left: 0; /* Start from the left edge */
         transform: translateY(-50%); /* Center vertically */
         font-size: 2rem;
         font-weight: bold;
-        color: white;
+        color: #007bff;
         white-space: nowrap;
-        animation: bounce 6s ease-in-out infinite; /* Speed of bounce */
+        animation: bounce 3.9s ease-in-out infinite; /* Speed of bounce (no easing) */
       }
 
-      /* Keyframes for Bouncing Title (Left to Right) */
+      /* Keyframes for Bouncing Title (Left to Right and Back) */
       @keyframes bounce {
         0% {
-          left: -80%; /* Start off the screen to the left */
+          transform: translateX(-100%); /* Start off-screen to the left */
         }
         50% {
-          left: 80%; /* Move to the far right */
+          transform: translateX(100vw); /* Move all the way to the right edge */
         }
         100% {
-          left: -80%; /* Return to the far left */
+          transform: translateX(-100%); /* Return to the left edge */
         }
       }
-
       /* Layout container (Sidebar + Main Content) */
       .container {
         display: flex;
