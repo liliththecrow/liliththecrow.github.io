@@ -127,15 +127,17 @@
         transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
       }
 
-      /* Phone Screen container (scaled down) */
+      /* Phone Screen container (scaled down, adjusted position and transparent) */
       .phone-screen {
         position: absolute;
         left: 30px; /* Adjust position for scaled-down phone */
-        top: 15px;
+        top: 50px; /* Slightly adjust top to bring the screen down */
         width: 120px; /* Shortened screen width */
         height: 160px; /* Shortened screen height */
-        background-color: black;
-        border: 2px solid white;
+        background-color: transparent; /* Make screen background transparent */
+        border: 2px solid rgba(255, 255, 255, 0.7); /* Semi-transparent white border */
+        border-radius: 8px; /* Optional: rounded corners for a more realistic look */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Subtle shadow effect */
         z-index: 2;
         display: none; /* Initially hidden */
       }
@@ -261,7 +263,6 @@
     <footer>
       <img src="images/IMG_6957.gif" alt="Image" />
       <div class="image-container">
-        <!-- Footer images (unchanged) -->
         <img src="images/ao3gif.gif" alt="Image 1"/>
         <img src="images/aol.gif" alt="Image 2"/>
         <img src="images/arachno.gif" alt="Image 3"/>
