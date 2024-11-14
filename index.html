@@ -111,32 +111,124 @@
         background-color: transparent;
       }
 
+      /* Style for the Totorola image container (scaled down) */
+      .totorola-container {
+        position: relative;
+        width: 180px; /* Scale down phone width */
+        height: 500px; /* Scale down phone height */
+        margin: 0 auto; /* Centering the phone image */
+      }
+
       /* Style for the Totorola image */
       .totorola-image {
-        width: auto;
+        width: 100%;
         height: auto;
-        max-width: 300px; /* Control size, do not stretch */
-        max-height: 300px; /* Control size, do not stretch */
-        cursor: pointer; /* Indicate it's clickable */
+        cursor: pointer;
         transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+      }
+
+      /* Phone Screen container (scaled down, adjusted position and transparent) */
+      .phone-screen {
         position: absolute;
-        right: 10px; /* Position on the far right */
+        left: 30px; /* Adjust position for scaled-down phone */
+        top: 50px; /* Slightly adjust top to bring the screen down */
+        width: 120px; /* Shortened screen width */
+        height: 160px; /* Shortened screen height */
+        background-color: transparent; /* Make screen background transparent */
+        border: 2px solid rgba(255, 255, 255, 0.7); /* Semi-transparent white border */
+        border-radius: 8px; /* Optional: rounded corners for a more realistic look */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Subtle shadow effect */
+        z-index: 2;
+        display: none; /* Initially hidden */
+      }
+
+      /* Content inside the screen */
+      .screen-content {
+        color: white;
+        font-size: 16px;
+        position: relative;
+        z-index: 1;
+        padding: 10px;
       }
 
     </style>
     <script>
-      // Function to change the image on click
+      // Function to open links in iframe within a new window
+      function openInIframe(url) {
+        var win = window.open('', '_blank'); // Open a new blank window
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+
+        var iframe = win.document.createElement("iframe");
+        iframe.style.border = "none";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.margin = "0";
+        iframe.referrerpolicy = "no-referrer";
+        iframe.allow = "fullscreen";
+        iframe.src = url; // Load the desired URL into the iframe
+
+        win.document.body.appendChild(iframe);
+      }
+
+      // Handle the click event for each link and open it in an iframe
+      function handleClick(url) {
+        openInIframe(url);
+      }
+    </script>
+    <script>
       document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('totorolaImage').addEventListener('click', function() {
-          var img = document.getElementById('totorolaImage');
+        var img = document.getElementById('totorolaImage');
+        var screen = document.getElementById('phoneScreen');
+        var screenContent = document.getElementById('screenContent');
+        var secretCode = ['1', '1', '2', '2', '3', '3'];
+        var enteredCode = [];
+        var isPhoneOpen = false;
 
-          // Change the image to Totorola_opening1.webp for 1 second
-          img.src = 'images/Totorola_opening1.webp';
+        // Function to handle the screen interaction
+        img.addEventListener('click', function() {
+          if (!isPhoneOpen) {
+            img.src = 'images/Totorola_Opening1.webp';  // Temporary image on click
+            setTimeout(function() {
+              img.src = 'images/Totorola1.webp';  // Final image after 1 second
+              isPhoneOpen = true; // Mark the phone as open
+              screen.style.display = 'block';  // Show the screen when phone is open
+            }, 1000); // 1000ms = 1 second
+          }
+        });
 
-          // After 1 second, change the image to Totorola1.webp and keep it there
-          setTimeout(function() {
-            img.src = 'images/Totorola1.webp';
-          }, 1000); // 1000ms = 1 second
+        // Prevent interaction if phone is open
+        screen.addEventListener('click', function(event) {
+          if (isPhoneOpen) {
+            event.stopPropagation();  // Prevent click action when phone is open
+          }
+        });
+
+        // Add keyboard events for handling numpad-like functionality with PC numkeys
+        document.addEventListener('keydown', function(event) {
+          if (isPhoneOpen) {
+            // Handle Enter (submit code)
+            if (event.key === 'Enter') {
+              if (JSON.stringify(enteredCode) === JSON.stringify(secretCode)) {
+                alert("Code correct! Downloading Emerald Extreme Rom.gba...");
+                window.location.href = 'images/Emerald Extreme Rom.gba';  // Trigger the download
+              } else {
+                alert("Incorrect code.");
+              }
+              enteredCode = []; // Reset the code after checking
+              screenContent.innerHTML = ''; // Clear screen content after submitting
+            }
+            // Handle Backspace (clear the last entered number)
+            else if (event.key === 'Backspace') {
+              enteredCode.pop();
+              screenContent.innerHTML = enteredCode.join(''); // Update the screen display
+            }
+            // Handle number keys (0-9)
+            else if (event.key >= '0' && event.key <= '9') {
+              enteredCode.push(event.key);
+              screenContent.innerHTML = enteredCode.join(''); // Update the screen display
+            }
+          }
         });
       });
     </script>
@@ -154,7 +246,6 @@
       <!-- Sidebar Section -->
       <div class="sidebar">
         <h3>link things</h3>
-        <!-- Links updated to use openInIframe functionality -->
         <span data-href="https://medrok9.github.io" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
           <h4>Main site</h4>
         </span>
@@ -177,11 +268,18 @@
       <div class="main-content">
         <h2>The Wall</h2>
         <p>This is where site updates and news will be shown</p>
-        
+        <p>phone added with secret codes more to be added soon 11/14/24</p>
         <p>homepage reformat 11/13/24</p>
 
-        <!-- Image to be clicked and switched -->
-        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
+        <!-- Totorola Container -->
+        <div class="totorola-container">
+          <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
+          <div id="phoneScreen" class="phone-screen">
+            <div id="screenContent" class="screen-content">
+              <p>Enter your code:</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
