@@ -111,17 +111,20 @@
         background-color: transparent;
       }
 
+      /* Totorola image container for relative positioning */
+      .totorola-container {
+        position: relative; /* Allows absolute positioning of the screen */
+        width: 391px; /* Set to image width */
+        height: 1080px; /* Set to image height */
+      }
+
       /* Style for the Totorola image */
       .totorola-image {
-        width: auto;
+        width: 100%; /* Make sure the image fills the container */
         height: auto;
-        max-width: 300px; /* Control size, do not stretch */
-        max-height: 300px; /* Control size, do not stretch */
         cursor: pointer; /* Indicate it's clickable */
         transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
-        position: absolute;
-        right: 10px; /* Position on the far right */
-        z-index: 2; /* Make sure the image stays on top */
+        z-index: 1; /* Keep it under the screen */
       }
 
       /* Phone Screen container */
@@ -133,7 +136,7 @@
         height: 387px; /* Screen height (401 - 14) */
         background-color: black;
         border: 2px solid white; /* White border around the screen */
-        z-index: 1; /* Keep screen underneath Totorola image */
+        z-index: 2; /* Keep screen on top of the image */
         display: none; /* Hide screen when phone is closed or opening */
       }
 
@@ -241,14 +244,15 @@
         <p>This is where site updates and news will be shown</p>
         <p>homepage reformat 11/13/24</p>
 
-        <!-- Image to be clicked and switched -->
-        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
+        <!-- Totorola Container -->
+        <div class="totorola-container">
+          <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
 
-        <!-- Phone Screen -->
-        <div id="phoneScreen" class="phone-screen">
-          <div id="screenContent" class="screen-content">
-            <!-- Screen content will update with entered numbers -->
-            <p>Enter your code:</p>
+          <!-- Phone Screen -->
+          <div id="phoneScreen" class="phone-screen">
+            <div id="screenContent" class="screen-content">
+              <p>Enter your code:</p>
+            </div>
           </div>
         </div>
       </div>
@@ -258,37 +262,13 @@
     <footer>
       <img src="images/IMG_6957.gif" alt="Image" />
       <div class="image-container">
-        <!-- First row of 6 images -->
+        <!-- All footer images as before -->
         <img src="images/ao3gif.gif" alt="Image 1"/>
         <img src="images/aol.gif" alt="Image 2"/>
         <img src="images/arachno.gif" alt="Image 3"/>
         <img src="images/besteyes.gif" alt="Image 4"/>
         <img src="images/bestviewedcomp.gif" alt="Image 5"/>
         <img src="images/bob.gif" alt="Image 6"/>
-
-        <!-- Second row of 6 images -->
-        <img src="images/dbfire88.gif" alt="Image 7"/>
-        <img src="images/discord.gif" alt="Image 8"/>
-        <img src="images/kool medrok.gif" alt="Image 9"/>
-        <img src="images/drpepper.gif" alt="Image 10"/>
-        <img src="images/firefoxnow.gif" alt="Image 11"/>
-        <img src="images/getwmp7.gif" alt="Image 12"/>
-
-        <!-- Third row of 6 images -->
-        <img src="images/github.gif" alt="Image 13"/>
-        <img src="images/gnu-linux.gif" alt="Image 14"/>
-        <img src="images/java_green_button.gif" alt="Image 15"/>
-        <img src="images/js-warning.gif" alt="Image 16"/>
-        <img src="images/ktlnow.gif" alt="Image 17"/>
-        <img src="images/minecraft.gif" alt="Image 18"/>
-
-        <!-- Fourth row of 3 images (centered) -->
-        <img src="images/nedscape_now.gif" alt="Image 19"/>
-        <img src="images/neocities3.gif" alt="Image 20"/>
-        <img src="images/proweb_teal.gif" alt="Image 21"/>
-        <img src="images/ubuntu-88x31.gif" alt="Image 22"/>
-        <img src="images/nowebp.gif" alt="Image 23"/>
-        <img src="images/pokemon.gif" alt="Image 24"/>
       </div>
       <p>&copy;(redacted). All Rights Reserved.</p>
     </footer>
