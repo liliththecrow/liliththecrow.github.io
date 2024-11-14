@@ -124,66 +124,59 @@
         z-index: 2; /* Make sure the image stays on top */
       }
 
-      /* Numpad Container - Position it over the flip phone image */
-      .numpad-container {
+      /* Screen container - fix the position and size */
+      .phone-screen {
         position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        width: 200px; /* Adjust width to match typical phone screen */
-        z-index: 3; /* Ensure the numpad is on top of the image */
+        left: 84px; /* X coordinate */
+        top: 141px;  /* Y coordinate */
+        width: 207px; /* Screen width (291 - 84) */
+        height: 260px; /* Screen height (401 - 141) */
+        background-color: black;
+        border: 2px solid white; /* White border around the screen */
+        z-index: 1; /* Keep screen underneath Totorola image */
       }
 
-      /* Numpad Button Style - Transparent with visible borders */
-      .numpad-button {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0); /* Transparent background */
-        border: 2px solid #fff; /* White border for visibility */
-        border-radius: 12px; /* Rounded corners for the flip phone buttons */
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-
-      .numpad-button:hover {
-        background-color: rgba(255, 255, 255, 0.3); /* Light hover effect */
-      }
-
-      /* Numpad layout (2x3 grid) */
-      .numpad-container > div:nth-child(odd) {
-        margin-bottom: 10px; /* Add space between rows */
+      /* Content inside the screen */
+      .screen-content {
+        color: white;
+        font-size: 16px;
+        position: relative;
+        z-index: 1;
+        padding: 10px;
       }
 
     </style>
     <script>
-      // Function to change the image on click
       document.addEventListener('DOMContentLoaded', function() {
         var img = document.getElementById('totorolaImage');
+        var screen = document.getElementById('phoneScreen');
         var secretCode = ['1', '1', '2', '2', '3', '3'];
         var enteredCode = [];
-        var isNumpadVisible = false;
+        var isPhoneOpen = false;
 
-        // Change image on click
+        // Function to handle the screen interaction
         img.addEventListener('click', function() {
-          img.src = 'images/Totorola_opening1.webp';  // Temporary image on click
-          setTimeout(function() {
-            img.src = 'images/Totorola1.webp';  // Final image after 1 second
-          }, 1000); // 1000ms = 1 second
+          if (!isPhoneOpen) {
+            img.src = 'images/Totorola_opening1.webp';  // Temporary image on click
+            setTimeout(function() {
+              img.src = 'images/Totorola1.webp';  // Final image after 1 second
+              isPhoneOpen = true; // Mark the phone as open
+            }, 1000); // 1000ms = 1 second
+          }
         });
 
-        // Numpad functionality
-        function handleNumpadButtonClick(number) {
-          if (isNumpadVisible) {
-            enteredCode.push(number);
-            if (enteredCode.length === secretCode.length) {
+        // Prevent interaction if phone is open
+        screen.addEventListener('click', function(event) {
+          if (isPhoneOpen) {
+            event.stopPropagation();  // Prevent click action when phone is open
+          }
+        });
+
+        // Add keyboard events for handling numpad-like functionality with PC numkeys
+        document.addEventListener('keydown', function(event) {
+          if (isPhoneOpen) {
+            // Handle Enter (submit code)
+            if (event.key === 'Enter') {
               if (JSON.stringify(enteredCode) === JSON.stringify(secretCode)) {
                 alert("Code correct! Downloading Emerald Extreme Rom.gba...");
                 window.location.href = 'images/Emerald Extreme Rom.gba';  // Trigger the download
@@ -192,31 +185,16 @@
               }
               enteredCode = []; // Reset the code after checking
             }
+            // Handle Backspace (clear the last entered number)
+            else if (event.key === 'Backspace') {
+              enteredCode.pop();
+            }
+            // Handle number keys (0-9)
+            else if (event.key >= '0' && event.key <= '9') {
+              enteredCode.push(event.key);
+            }
           }
-        }
-
-        // Toggle numpad visibility
-        function toggleNumpad() {
-          isNumpadVisible = !isNumpadVisible;
-          document.getElementById('numpad').style.display = isNumpadVisible ? 'flex' : 'none';
-        }
-
-        // Set up numpad buttons
-        document.getElementById('numpad').innerHTML = `
-          <div class="numpad-button" onclick="handleNumpadButtonClick(1)">1</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(2)">2</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(3)">3</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(4)">4</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(5)">5</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(6)">6</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(7)">7</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(8)">8</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(9)">9</div>
-          <div class="numpad-button" onclick="handleNumpadButtonClick(0)">0</div>
-        `;
-
-        // Add numpad toggle button
-        document.getElementById('toggle-numpad').addEventListener('click', toggleNumpad);
+        });
       });
     </script>
   </head>
@@ -258,14 +236,16 @@
         
         <p>homepage reformat 11/13/24</p>
 
-        <!-- Image to be clicked and switched -->
-        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
-        
-        <!-- Numpad Container (hidden by default) -->
-        <div id="numpad" class="numpad-container" style="display: none;">
-          <!-- Numpad buttons will be dynamically added here by JavaScript -->
+        <!-- Phone Screen -->
+        <div id="phoneScreen" class="phone-screen">
+          <div class="screen-content">
+            <!-- Add screen content like text, images, etc. -->
+            <p>Welcome to the phone screen. Enter your code.</p>
+          </div>
         </div>
 
+        <!-- Totorola Image -->
+        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
       </div>
     </div>
 
