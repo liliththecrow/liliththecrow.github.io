@@ -82,6 +82,10 @@
         overflow-y: auto;
         background-color: transparent;
         position: relative; /* Position relative for the image */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%; /* Make the content area take up the full height */
       }
 
       /* Sidebar Links */
@@ -113,13 +117,10 @@
 
       /* Style for the Totorola image */
       .totorola-image {
-        position: absolute;
-        top: 50%;
-        right: 10px; /* 10px from the right edge */
-        transform: translateY(-50%); /* Vertically center the image */
         width: auto;
-        height: 100%; /* Adjust height as needed */
-        max-width: 100px; /* Set max width to control image size */
+        height: auto;
+        max-width: 100px; /* Control size, do not stretch */
+        max-height: 100px; /* Control size, do not stretch */
         cursor: pointer; /* Indicate it's clickable */
         transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
       }
