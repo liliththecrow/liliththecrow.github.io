@@ -16,21 +16,13 @@
         background-color: #f9f9f9;
         overflow-x: hidden; /* Prevent horizontal scroll */
       }
-p {
-  color: white;
-}
-h1 {
-  color: white;
-}
-h2 {
-  color: white;
-}
-h3 {
-  color: white;
-}
-      h4 {
+      p {
         color: white;
       }
+      h1, h2, h3, h4 {
+        color: white;
+      }
+
       /* Header Section */
       header {
         padding: 20px;
@@ -41,7 +33,6 @@ h3 {
         overflow: hidden;
       }
 
-      
       /* Bouncing Text Animation */
       .bouncing-title {
         position: absolute;
@@ -67,6 +58,7 @@ h3 {
           transform: translateX(-100%); /* Return to the left edge */
         }
       }
+
       /* Layout container (Sidebar + Main Content) */
       .container {
         display: flex;
@@ -89,6 +81,7 @@ h3 {
         padding: 20px;
         overflow-y: auto;
         background-color: transparent;
+        position: relative; /* Position relative for the image */
       }
 
       /* Sidebar Links */
@@ -117,30 +110,35 @@ h3 {
       .container, header, footer {
         background-color: transparent;
       }
+
+      /* Style for the Totorola image */
+      .totorola-image {
+        position: absolute;
+        top: 50%;
+        right: 10px; /* 10px from the right edge */
+        transform: translateY(-50%); /* Vertically center the image */
+        width: auto;
+        height: 100%; /* Adjust height as needed */
+        max-width: 100px; /* Set max width to control image size */
+        cursor: pointer; /* Indicate it's clickable */
+        transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+      }
     </style>
     <script>
-      // Function to open links in iframe within a new window
-      function openInIframe(url) {
-        var win = window.open('', '_blank'); // Open a new blank window
-        win.document.body.style.margin = "0";
-        win.document.body.style.height = "100vh";
+      // Function to change the image on click
+      document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('totorolaImage').addEventListener('click', function() {
+          var img = document.getElementById('totorolaImage');
 
-        var iframe = win.document.createElement("iframe");
-        iframe.style.border = "none";
-        iframe.style.width = "100%";
-        iframe.style.height = "100%";
-        iframe.style.margin = "0";
-        iframe.referrerpolicy = "no-referrer";
-        iframe.allow = "fullscreen";
-        iframe.src = url; // Load the desired URL into the iframe
+          // Change the image to Totorola_opening1.webp for 1 second
+          img.src = 'images/Totorola_opening1.webp';
 
-        win.document.body.appendChild(iframe);
-      }
-
-      // Handle the click event for each link and open it in an iframe
-      function handleClick(url) {
-        openInIframe(url);
-      }
+          // After 1 second, change the image to Totorola1.webp and keep it there
+          setTimeout(function() {
+            img.src = 'images/Totorola1.webp';
+          }, 1000); // 1000ms = 1 second
+        });
+      });
     </script>
   </head>
   <body>
@@ -181,6 +179,9 @@ h3 {
         <p>This is where site updates and news will be shown</p>
         
         <p>homepage reformat 11/13/24</p>
+
+        <!-- Image to be clicked and switched -->
+        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
       </div>
     </div>
 
@@ -213,14 +214,12 @@ h3 {
         <img src="images/minecraft.gif" alt="Image 18"/>
 
         <!-- Fourth row of 3 images (centered) -->
-  
-          <img src="images/nedscape_now.gif" alt="Image 19"/>
-          <img src="images/neocities3.gif" alt="Image 20"/>
-          <img src="images/proweb_teal.gif" alt="Image 21"/>
-          <img src="images/ubuntu-88x31.gif" alt="Image 22"/>
-          <img src="images/nowebp.gif" alt="Image 23"/>
-          <img src="images/pokemon.gif" alt="Image 24"/>
-        </div>
+        <img src="images/nedscape_now.gif" alt="Image 19"/>
+        <img src="images/neocities3.gif" alt="Image 20"/>
+        <img src="images/proweb_teal.gif" alt="Image 21"/>
+        <img src="images/ubuntu-88x31.gif" alt="Image 22"/>
+        <img src="images/nowebp.gif" alt="Image 23"/>
+        <img src="images/pokemon.gif" alt="Image 24"/>
       </div>
       <p>&copy;(redacted). All Rights Reserved.</p>
     </footer>
