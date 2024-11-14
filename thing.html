@@ -124,7 +124,7 @@
         z-index: 2; /* Make sure the image stays on top */
       }
 
-      /* Screen container - fix the position and size */
+      /* Phone Screen container */
       .phone-screen {
         position: absolute;
         left: 84px; /* X coordinate */
@@ -134,6 +134,7 @@
         background-color: black;
         border: 2px solid white; /* White border around the screen */
         z-index: 1; /* Keep screen underneath Totorola image */
+        display: none; /* Hide screen when phone is closed or opening */
       }
 
       /* Content inside the screen */
@@ -150,6 +151,7 @@
       document.addEventListener('DOMContentLoaded', function() {
         var img = document.getElementById('totorolaImage');
         var screen = document.getElementById('phoneScreen');
+        var screenContent = document.getElementById('screenContent');
         var secretCode = ['1', '1', '2', '2', '3', '3'];
         var enteredCode = [];
         var isPhoneOpen = false;
@@ -161,6 +163,7 @@
             setTimeout(function() {
               img.src = 'images/Totorola1.webp';  // Final image after 1 second
               isPhoneOpen = true; // Mark the phone as open
+              screen.style.display = 'block';  // Show the screen when phone is open
             }, 1000); // 1000ms = 1 second
           }
         });
@@ -184,14 +187,17 @@
                 alert("Incorrect code.");
               }
               enteredCode = []; // Reset the code after checking
+              screenContent.innerHTML = ''; // Clear screen content after submitting
             }
             // Handle Backspace (clear the last entered number)
             else if (event.key === 'Backspace') {
               enteredCode.pop();
+              screenContent.innerHTML = enteredCode.join(''); // Update the screen display
             }
             // Handle number keys (0-9)
             else if (event.key >= '0' && event.key <= '9') {
               enteredCode.push(event.key);
+              screenContent.innerHTML = enteredCode.join(''); // Update the screen display
             }
           }
         });
@@ -233,19 +239,18 @@
       <div class="main-content">
         <h2>The Wall</h2>
         <p>This is where site updates and news will be shown</p>
-        
         <p>homepage reformat 11/13/24</p>
+
+        <!-- Image to be clicked and switched -->
+        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
 
         <!-- Phone Screen -->
         <div id="phoneScreen" class="phone-screen">
-          <div class="screen-content">
-            <!-- Add screen content like text, images, etc. -->
-            <p>Welcome to the phone screen. Enter your code.</p>
+          <div id="screenContent" class="screen-content">
+            <!-- Screen content will update with entered numbers -->
+            <p>Enter your code:</p>
           </div>
         </div>
-
-        <!-- Totorola Image -->
-        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
       </div>
     </div>
 
