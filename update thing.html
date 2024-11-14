@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+    <title>homepage</title>
+    <style>
+      /* Basic Styles for the Layout */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        background-image: url("images/IMG_6958.gif");
+        background-color: #f9f9f9;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+      p {
+        color: white;
+      }
+      h1, h2, h3, h4 {
+        color: white;
+      }
+
+      /* Header Section */
+      header {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px dashed #333; /* Perforated line below the header */
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* Bouncing Text Animation */
+      .bouncing-title {
+        position: absolute;
+        top: 6%;
+        left: 0; /* Start from the left edge */
+        transform: translateY(-50%); /* Center vertically */
+        font-size: 2rem;
+        font-weight: bold;
+        color: #007bff;
+        white-space: nowrap;
+        animation: bounce 4.5s ease-in-out infinite; /* Speed of bounce (no easing) */
+      }
+
+      /* Keyframes for Bouncing Title (Left to Right and Back) */
+      @keyframes bounce {
+        0% {
+          transform: translateX(-100%); /* Start off-screen to the left */
+        }
+        50% {
+          transform: translateX(100vw); /* Move all the way to the right edge */
+        }
+        100% {
+          transform: translateX(-100%); /* Return to the left edge */
+        }
+      }
+
+      /* Layout container (Sidebar + Main Content) */
+      .container {
+        display: flex;
+        height: calc(100vh - 60px); /* Subtract header height */
+        border-bottom: 2px dashed #333; /* Perforated line between header and body */
+      }
+
+      /* Sidebar Section */
+      .sidebar {
+        width: 250px;
+        padding: 20px;
+        box-sizing: border-box;
+        border-right: 2px dashed #333; /* Perforated line to separate sidebar from content */
+        background-color: transparent;
+      }
+
+      /* Main Content Section */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: transparent;
+        position: relative; /* Position relative for the image */
+      }
+
+      /* Sidebar Links */
+      .sidebar a {
+        display: block;
+        color: #333;
+        text-decoration: none;
+        margin: 10px 0;
+        font-weight: bold;
+      }
+
+      .sidebar a:hover {
+        color: #007bff;
+      }
+
+      /* Footer Section */
+      footer {
+        background-color: transparent;
+        color: #333;
+        text-align: center;
+        padding: 10px;
+        border-top: 2px dashed #333; /* Perforated line above the footer */
+      }
+
+      /* To ensure the sections maintain a transparent background */
+      .container, header, footer {
+        background-color: transparent;
+      }
+
+      /* Style for the Totorola image */
+      .totorola-image {
+        width: auto;
+        height: auto;
+        max-width: 300px; /* Control size, do not stretch */
+        max-height: 300px; /* Control size, do not stretch */
+        cursor: pointer; /* Indicate it's clickable */
+        transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+        position: absolute;
+        right: 10px; /* Position on the far right */
+        z-index: 2; /* Make sure the image stays on top */
+      }
+
+      /* Numpad Container - Position it over the flip phone image */
+      .numpad-container {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        width: 200px; /* Adjust width to match typical phone screen */
+        z-index: 3; /* Ensure the numpad is on top of the image */
+      }
+
+      /* Numpad Button Style - Transparent with visible borders */
+      .numpad-button {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0); /* Transparent background */
+        border: 2px solid #fff; /* White border for visibility */
+        border-radius: 12px; /* Rounded corners for the flip phone buttons */
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .numpad-button:hover {
+        background-color: rgba(255, 255, 255, 0.3); /* Light hover effect */
+      }
+
+      /* Numpad layout (2x3 grid) */
+      .numpad-container > div:nth-child(odd) {
+        margin-bottom: 10px; /* Add space between rows */
+      }
+
+    </style>
+    <script>
+      // Function to change the image on click
+      document.addEventListener('DOMContentLoaded', function() {
+        var img = document.getElementById('totorolaImage');
+        var secretCode = ['1', '1', '2', '2', '3', '3'];
+        var enteredCode = [];
+        var isNumpadVisible = false;
+
+        // Change image on click
+        img.addEventListener('click', function() {
+          img.src = 'images/Totorola_opening1.webp';  // Temporary image on click
+          setTimeout(function() {
+            img.src = 'images/Totorola1.webp';  // Final image after 1 second
+          }, 1000); // 1000ms = 1 second
+        });
+
+        // Numpad functionality
+        function handleNumpadButtonClick(number) {
+          if (isNumpadVisible) {
+            enteredCode.push(number);
+            if (enteredCode.length === secretCode.length) {
+              if (JSON.stringify(enteredCode) === JSON.stringify(secretCode)) {
+                alert("Code correct! Downloading Emerald Extreme Rom.gba...");
+                window.location.href = 'images/Emerald Extreme Rom.gba';  // Trigger the download
+              } else {
+                alert("Incorrect code.");
+              }
+              enteredCode = []; // Reset the code after checking
+            }
+          }
+        }
+
+        // Toggle numpad visibility
+        function toggleNumpad() {
+          isNumpadVisible = !isNumpadVisible;
+          document.getElementById('numpad').style.display = isNumpadVisible ? 'flex' : 'none';
+        }
+
+        // Set up numpad buttons
+        document.getElementById('numpad').innerHTML = `
+          <div class="numpad-button" onclick="handleNumpadButtonClick(1)">1</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(2)">2</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(3)">3</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(4)">4</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(5)">5</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(6)">6</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(7)">7</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(8)">8</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(9)">9</div>
+          <div class="numpad-button" onclick="handleNumpadButtonClick(0)">0</div>
+        `;
+
+        // Add numpad toggle button
+        document.getElementById('toggle-numpad').addEventListener('click', toggleNumpad);
+      });
+    </script>
+  </head>
+  <body>
+
+    <!-- Header Section -->
+    <header>
+      <div class="bouncing-title">homepage thing</div>
+    </header>
+
+    <!-- Layout Container (Sidebar + Main Content) -->
+    <div class="container">
+
+      <!-- Sidebar Section -->
+      <div class="sidebar">
+        <h3>link things</h3>
+        <span data-href="https://medrok9.github.io" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+          <h4>Main site</h4>
+        </span>
+        <span data-href="https://medrok9.github.io/webretro-testing/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+          <h4>Web retro (emulator)</h4>
+        </span>
+        <span data-href="https://medrok9.github.io/demo/" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+          <h4>Ruffle (flash emulator)</h4>
+        </span>
+        <a href="https://drive.google.com/drive/folders/1Hkbng0phk3KqLSRKUDUqLwBwxO2FxZc1" target="_blank">
+          <h4>Emulator files (wip)</h4>
+        </a>
+        <p>​</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" target="_blank">
+          <h4>homepage feedback/suggestions</h4>
+        </a>
+      </div>
+
+      <!-- Main Content Section -->
+      <div class="main-content">
+        <h2>The Wall</h2>
+        <p>This is where site updates and news will be shown</p>
+        
+        <p>homepage reformat 11/13/24</p>
+
+        <!-- Image to be clicked and switched -->
+        <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
+        
+        <!-- Numpad Container (hidden by default) -->
+        <div id="numpad" class="numpad-container" style="display: none;">
+          <!-- Numpad buttons will be dynamically added here by JavaScript -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <img src="images/IMG_6957.gif" alt="Image" />
+      <div class="image-container">
+        <!-- First row of 6 images -->
+        <img src="images/ao3gif.gif" alt="Image 1"/>
+        <img src="images/aol.gif" alt="Image 2"/>
+        <img src="images/arachno.gif" alt="Image 3"/>
+        <img src="images/besteyes.gif" alt="Image 4"/>
+        <img src="images/bestviewedcomp.gif" alt="Image 5"/>
+        <img src="images/bob.gif" alt="Image 6"/>
+
+        <!-- Second row of 6 images -->
+        <img src="images/dbfire88.gif" alt="Image 7"/>
+        <img src="images/discord.gif" alt="Image 8"/>
+        <img src="images/kool medrok.gif" alt="Image 9"/>
+        <img src="images/drpepper.gif" alt="Image 10"/>
+        <img src="images/firefoxnow.gif" alt="Image 11"/>
+        <img src="images/getwmp7.gif" alt="Image 12"/>
+
+        <!-- Third row of 6 images -->
+        <img src="images/github.gif" alt="Image 13"/>
+        <img src="images/gnu-linux.gif" alt="Image 14"/>
+        <img src="images/java_green_button.gif" alt="Image 15"/>
+        <img src="images/js-warning.gif" alt="Image 16"/>
+        <img src="images/ktlnow.gif" alt="Image 17"/>
+        <img src="images/minecraft.gif" alt="Image 18"/>
+
+        <!-- Fourth row of 3 images (centered) -->
+        <img src="images/nedscape_now.gif" alt="Image 19"/>
+        <img src="images/neocities3.gif" alt="Image 20"/>
+        <img src="images/proweb_teal.gif" alt="Image 21"/>
+        <img src="images/ubuntu-88x31.gif" alt="Image 22"/>
+        <img src="images/nowebp.gif" alt="Image 23"/>
+        <img src="images/pokemon.gif" alt="Image 24"/>
+      </div>
+      <p>&copy;(redacted). All Rights Reserved.</p>
+    </footer>
+
+  </body>
+</html>
