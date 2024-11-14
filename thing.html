@@ -111,32 +111,32 @@
         background-color: transparent;
       }
 
-      /* Style for the Totorola image container */
+      /* Style for the Totorola image container (scaled down) */
       .totorola-container {
-        position: relative; /* Keeps the screen positioned correctly */
-        width: 391px; /* Phone's natural width */
-        height: 1080px; /* Phone's natural height */
+        position: relative;
+        width: 180px; /* Scale down phone width */
+        height: 500px; /* Scale down phone height */
         margin: 0 auto; /* Centering the phone image */
       }
 
       /* Style for the Totorola image */
       .totorola-image {
-        width: 100%; /* Ensure the image fills its container */
-        height: auto; /* Maintain the image aspect ratio */
-        cursor: pointer; /* Indicate it's clickable */
+        width: 100%;
+        height: auto;
+        cursor: pointer;
         transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
       }
 
-      /* Phone Screen container */
+      /* Phone Screen container (scaled down) */
       .phone-screen {
         position: absolute;
-        left: 84px; /* Position the screen over the image */
-        top: 14px;
-        width: 207px; /* Width (291 - 84) */
-        height: 387px; /* Height (401 - 14) */
+        left: 30px; /* Adjust position for scaled-down phone */
+        top: 15px;
+        width: 120px; /* Shortened screen width */
+        height: 160px; /* Shortened screen height */
         background-color: black;
-        border: 2px solid white; /* White border around the screen */
-        z-index: 2; /* Ensures the screen is above the phone */
+        border: 2px solid white;
+        z-index: 2;
         display: none; /* Initially hidden */
       }
 
@@ -242,13 +242,12 @@
       <div class="main-content">
         <h2>The Wall</h2>
         <p>This is where site updates and news will be shown</p>
+        
         <p>homepage reformat 11/13/24</p>
 
         <!-- Totorola Container -->
         <div class="totorola-container">
           <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
-
-          <!-- Phone Screen -->
           <div id="phoneScreen" class="phone-screen">
             <div id="screenContent" class="screen-content">
               <p>Enter your code:</p>
