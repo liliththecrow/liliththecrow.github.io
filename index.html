@@ -82,10 +82,6 @@
         overflow-y: auto;
         background-color: transparent;
         position: relative; /* Position relative for the image */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%; /* Make the content area take up the full height */
       }
 
       /* Sidebar Links */
@@ -119,11 +115,14 @@
       .totorola-image {
         width: auto;
         height: auto;
-        max-width: 100px; /* Control size, do not stretch */
-        max-height: 100px; /* Control size, do not stretch */
+        max-width: 300px; /* Control size, do not stretch */
+        max-height: 300px; /* Control size, do not stretch */
         cursor: pointer; /* Indicate it's clickable */
         transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+        position: absolute;
+        right: 10px; /* Position on the far right */
       }
+
     </style>
     <script>
       // Function to change the image on click
