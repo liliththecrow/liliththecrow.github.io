@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="GENERATOR" content="Microsoft FrontPage 2.0">
     <title>homepage</title>
+        <script src="js/bubbles.js"></script>
     <style>
       /* Basic Styles for the Layout */
       body {
@@ -49,13 +50,13 @@
       /* Keyframes for Bouncing Title (Left to Right and Back) */
       @keyframes bounce {
         0% {
-          transform: translateX(-100%); /* Start off-screen to the left */
+          transform: translateX(-90%); /* Start off-screen to the left */
         }
         50% {
-          transform: translateX(100vw); /* Move all the way to the right edge */
+          transform: translateX(90vw); /* Move all the way to the right edge */
         }
         100% {
-          transform: translateX(-100%); /* Return to the left edge */
+          transform: translateX(-90%); /* Return to the left edge */
         }
       }
 
@@ -182,6 +183,7 @@
         var screen = document.getElementById('phoneScreen');
         var screenContent = document.getElementById('screenContent');
         var secretCode = ['1', '1', '2', '2', '3', '3'];
+        var secretCode1 = ['1', '2','3', '4', '5'];
         var enteredCode = [];
         var isPhoneOpen = false;
 
@@ -212,7 +214,52 @@
               if (JSON.stringify(enteredCode) === JSON.stringify(secretCode)) {
                 alert("Code correct! Downloading Emerald Extreme Rom.gba...");
                 window.location.href = 'images/Emerald Extreme Rom.gba';  // Trigger the download
-              } else {
+              }
+              if (JSON.stringify(enteredCode) === JSON.stringify(secretCode1)) {
+  alert("Code correct! but at what cost...");
+  const delay = Math.floor(Math.random() * (10 - 3 + 1) + 3) * 1000;
+   setTimeout(() => {
+    // Create overlay div
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.zIndex = "9999";
+    overlay.style.backgroundColor = "";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+
+    // Create GIF element
+    const gif = document.createElement("img");
+    gif.src = "foxy.gif";
+    gif.style.width = "100%";
+    gif.style.height = "100%";
+    gif.style.objectFit = "cover";
+
+    // Create audio element
+    const audio = document.createElement("audio");
+    audio.src = "foxy.mp3";
+    audio.autoplay = true;
+    audio.style.display = "none";
+
+    // Append everything
+    overlay.appendChild(gif);
+    overlay.appendChild(audio);
+    document.body.appendChild(overlay);
+
+    // Optional: Exit overlay after 6 seconds
+    setTimeout(() => {
+      document.body.removeChild(overlay);
+    }, 6000);
+  }, delay);
+}
+        
+
+              
+              else {
                 alert("Incorrect code.");
               }
               enteredCode = []; // Reset the code after checking
@@ -244,25 +291,45 @@
     <div class="container">
 
       <!-- Sidebar Section -->
-      <div class="sidebar">
-        <h3>link things</h3>
-        <span data-href="boo" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
-          <h4>nothing</h4>
-        </span>
-        <span data-href="put link here" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
-          <h4>nothing again</h4>
-        </span>
-        <span data-href="nothing yet" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
-          <h4>still nothing</h4>
-        </span>
-        <a href="nope" target="_blank">
-          <h4>y u still reading</h4>
-        </a>
-        <p>​</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" target="_blank">
-          <h4>homepage feedback/suggestions</h4>
-        </a>
-      </div>
+<div class="sidebar">
+  <h3>link things</h3>
+  <span class="hover-effect" data-href="boo" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+    <h4>nothing</h4>
+  </span>
+  <span class="hover-effect" data-href="put link here" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+    <h4>nothing again</h4>
+  </span>
+  <span class="hover-effect" data-href="nothing yet" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+    <h4>still nothing</h4>
+  </span>
+    <span class="hover-effect" data-href="i nono" onclick="handleClick(this.getAttribute('data-href'))" style="cursor:pointer;">
+    <h4>y u still reading</h4>
+  </span>
+  <p>​</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSecXEZ8iUbcYR7JzJkWCI5Ddb7ECudzLx_Cclp4IO-59uJS4A/viewform?usp=sf_link" target="_blank" class="hover-effect">
+    <h4>homepage feedback/suggestions</h4>
+  </a>
+</div>
+
+<style>
+  .hover-effect {
+    display: block;
+    transition: transform 0.2s ease-in-out;
+    margin-bottom: 10px; /* Adds spacing */
+  }
+
+  .hover-effect:hover {
+    transform: scale(1.1);
+  }
+
+  .sidebar a h4,
+  .sidebar span h4 {
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+
 
       <!-- Main Content Section -->
       <div class="main-content">
@@ -270,6 +337,8 @@
         <p>This is where site updates and news will be shown</p>
         <p>old changelog (2024) is redacted</p>
         <p>WE'RE BACK BABY (no games anymore so go away if that what your here for) 4/27/25</p>
+        <p>added a new code 4/29/25</p>
+        <p>added a hover affect for the links 4/29/25</p>
         
 
         <!-- Totorola Container -->
@@ -277,7 +346,7 @@
           <img id="totorolaImage" src="images/Closed_Totorola.webp" alt="Totorola" class="totorola-image" />
           <div id="phoneScreen" class="phone-screen">
             <div id="screenContent" class="screen-content">
-              <p>Enter your code:</p>
+              <p>Enter code:</p>
             </div>
           </div>
         </div>
@@ -320,7 +389,7 @@
         <img src="images/nowebp.gif" alt="Image 23"/>
         <img src="images/pokemon.gif" alt="Image 24"/>
       </div>
-      <p>&copy;(redacted). All Rights Reserved.</p>
+      <p>&copy;liliththecrow. All Rights Reserved.</p>
     </footer>
 
   </body>
